@@ -19,3 +19,16 @@ Define the side nav title link in `config.toml` in the `homeLink` parameter.
 [params]
     homeLink = '/'
 ```
+
+## Available Shortcodes
+
+### include
+
+Reuse content from a folder in multiple page files.
+Similar to Flare Snippets, Sphinx Includes, Antora partials, and similar content reuse mechanisms.
+
+```
+{{% include "path/to/file.md" %}}
+```
+
+Replace `path/to/file.md` with a folder and/or file path of any level under the site's `content` folder.
