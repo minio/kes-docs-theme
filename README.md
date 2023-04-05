@@ -49,7 +49,7 @@ Use with caution.
 {{< /admonition >}}
 ```
 
-## Tabs
+### Tabs
 
 Tabbed-view navigation is supported using the following shortcode.
 
@@ -65,7 +65,7 @@ Tabbed-view navigation is supported using the following shortcode.
 {{< /tabs >}}
 ```
 
-## Cards
+### Cards
 
 Use the following shortcode to create card. 
 
