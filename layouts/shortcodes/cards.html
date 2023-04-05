@@ -1,0 +1,16 @@
+{{ $id := .Get 0 }}
+{{ $group := printf "cards-%s" $id }}
+
+
+<div class="scrollbar mb-10 flex gap-5 overflow-x-auto pb-1">
+	{{- range $index, $card := .Scratch.Get $group }}
+		<div class="w-full flex-shrink-0 rounded border border-light-300 p-6 dark:border-dark-200 md:w-80 [&_*]:my-5 last:[&_*]:mb-0 [&_img]:mb-3">
+			{{ if $card.title }}
+				<h4 class="text !-mt-0.5 mb-4 font-bold text-heading dark:border-dark-200">{{ $card.title }}</h4>
+			{{ end }}
+
+			{{ .Content | $.Page.RenderString }}
+			{{ .Inner }}
+		</div>
+	{{- end }}
+</div>
