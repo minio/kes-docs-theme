@@ -1,0 +1,8 @@
+{{ $title := default (.Get "title") }}
+{{ $group := printf "cards-%s" (.Parent.Get 0) }}
+
+{{- if not (.Parent.Scratch.Get $group) }}
+	{{- .Parent.Scratch.Set $group slice }}
+{{- end }}
+
+{{- .Parent.Scratch.Add $group (dict "title" $title "Content" .Inner) }}
