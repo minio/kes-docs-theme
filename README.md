@@ -27,15 +27,16 @@ Hugo uses shortcodes to extend what is normally available with Markdown.
 
 ### Admonitions
 
-We have added a shortcode that supports four admonition types
+We have added a shortcode that supports five admonition types
 
 - Note
 - Tip
 - Caution
 - Warning
+- important
 
 ```Markdown
-{{< admonition title="Admonition title" type="[note | tip | caution | warning]" >}}
+{{< admonition title="Admonition title" type="[note | tip | caution | warning | important]" >}}
 Text...
 {{< /admonition >}}
 ```
