@@ -17,6 +17,10 @@
 	{{ $classList = `text-red-500 dark:text-red-500/80 border-red-500/20 bg-red-500/5 [&_pre]:border-red-500/20
 		[&_code]:border-red-500/20`
 	}}
+{{ else if eq (.Get "type") "important" }}
+	{{ $classList = `text-pink-500 dark:text-pink-500/80 border-pink-500/20 bg-pink-500/5 [&_pre]:border-pink-500/20
+		[&_code]:border-pink-500/20`
+	}}
 {{ end }}
 
 
