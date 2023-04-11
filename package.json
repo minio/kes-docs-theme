@@ -1,0 +1,42 @@
+{
+	"name": "minio-hugo-docs-theme",
+	"version": "1.0.0",
+	"description": "Hugo theme for MinIO Documentations",
+	"main": "index.html",
+	"scripts": {
+		"build:tailwind": "npx tailwindcss -i ./assets/css/vendors/tailwind.css -o ./assets/dist/utilities.css",
+		"build:js": "esbuild --bundle --sourcemap --target=es2018 --outfile=./assets/dist/app.js ./assets/js/app.js",
+		"build": "npm run build:tailwind && npm run build:js",
+		"dev:css": "npx tailwindcss -i ./assets/css/vendors/tailwind.css -o ./assets/dist/utilities.css --watch",
+		"dev:js": "esbuild --bundle --sourcemap --target=es2018 --outfile=./assets/dist/app.js ./assets/js/app.js --watch",
+		"dev": "concurrently 'npm run dev:js' 'npm run dev:css'"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/miniohq/hugo-docs-theme"
+	},
+	"author": "MinIO Documentation Team",
+	"license": "Apache-2.",
+	"bugs": {
+		"url": "https://github.com/miniohq/hugo-docs-theme/issues"
+	},
+	"devDependencies": {
+		"@tailwindcss/typography": "^0.5.9",
+		"autoprefixer": "^10.4.14",
+		"concurrently": "^8.0.1",
+		"prettier": "^2.8.7",
+		"prettier-plugin-go-template": "^0.0.13",
+		"prettier-plugin-tailwindcss": "^0.2.7"
+	},
+	"browserslist": [
+		"last 2 versions"
+	],
+	"dependencies": {
+		"@cfworker/json-schema": "^1.12.5",
+		"clipboard": "^2.0.11",
+		"esbuild": "^0.17.16",
+		"flexsearch": "^0.7.31",
+		"lodash": "^4.17.21",
+		"tailwindcss": "^3.3.1"
+	}
+}

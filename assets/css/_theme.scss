@@ -4,14 +4,14 @@
 $theme-properties: (
 	// Text
 	--link-color: #006da0 #85b3ee,
-	--text-color: $black #a2adc0,
+	--text-color: #000000 #a2adc0,
 	--text-muted-color: #5c5c5c #697995,
-	--headings-color: $black #e3eeef,
+	--headings-color: #000000 #e3eeef,
 	// Scrollbar
-	--scrollbar-bg: #dedede $dark-300,
-	--scrollbar-hover-bg: #c6c6c6 lighten($dark-300, 5%),
+	--scrollbar-bg: #dedede #2e394a,
+	--scrollbar-hover-bg: #c6c6c6 lighten(#2e394a, 5%),
 	// Typography
-	--pre-bg: $light-200 $dark-200
+	--pre-bg: #eff0f1 #273140
 );
 
 // Activate dark/light themes

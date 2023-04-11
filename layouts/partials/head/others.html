@@ -4,16 +4,14 @@
 <link rel="preload" as="font" href="{{ "fonts/inter/Inter-Bold.woff2" | relURL }}" type="font/woff2" crossorigin="anonymous" />
 
 <!-- CSS -->
-{{ $styles := resources.Get "css/style.scss" | toCSS }}
-{{ $utils := resources.Get "css/utilities.css" }}
+{{ $scss := resources.Get "css/style.scss" | toCSS }}
+{{ $utils := resources.Get "dist/utilities.css" }}
+{{ $css := slice $scss $utils | resources.Concat "dist/style.css" }}
 
 {{ if .Site.IsServer }}
-	{{ $utils := $utils | fingerprint | resources.PostProcess }}
-	<link rel="stylesheet" href="{{ $styles.Permalink }}" />
-	<link rel="stylesheet" href="{{ $utils.Permalink }}" />
+	{{ $css := $css | fingerprint }}
+	<link rel="stylesheet" href="{{ $css.Permalink }}" />
 {{ else }}
-	{{ $styles := $styles | minify | fingerprint }}
-	{{ $utils := $utils | minify | fingerprint }}
-	<link rel="stylesheet" href="{{ $styles.Permalink }}" />
-	<link rel="stylesheet" href="{{ $utils.Permalink }}" />
+	{{ $css := $css | minify | fingerprint }}
+	<link rel="stylesheet" href="{{ $css.Permalink }}" />
 {{ end }}

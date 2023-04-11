@@ -1,5 +1,13 @@
-{{ $script := resources.Get "js/index.js" | js.Build | minify }}
-<script src="{{ $script.Permalink }}"></script>
+{{ $script := resources.Get "/dist/app.js" }}
+
+{{ if .Site.IsServer }}
+	{{ $script := $script | fingerprint }}
+	<script src="{{ $script.Permalink }}"></script>
+{{ else }}
+	{{ $script := $script | minify | fingerprint }}
+	<script src="{{ $script.Permalink }}"></script>
+{{ end }}
+
 {{- $searchConfigFile := printf "search/%s.config.json" .Language.Lang -}}
 {{- $searchConfig := resources.Get "search/config.json" | resources.ExecuteAsTemplate
 	$searchConfigFile . | resources.Minify
