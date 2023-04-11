@@ -1,5 +1,49 @@
 # MinIO Hugo Docs Theme
 
+## Usage
+
+Follow the steps below to create a new Hugo site with the MinIO Hugo Docs theme. Make sure to install [Node.js](https://nodejs.org/en) and [Hugo](https://gohugo.io/installation/) before running the commands.
+
+### Create HUGO site
+
+- hugo new site [site-name]
+- cd [site-name]
+- git init
+- git submodule add https://github.com/miniohq/hugo-docs-theme themes/hugo-docs-theme
+- echo "theme = 'hugo-docs-theme'" >> config.toml
+
+### Update config.toml
+
+- Set the `baseURL` to the URL of your site or `/`.
+- Set the TOC depth and syntax highlighting theme by adding the following code:
+  ```toml
+  [markup]
+    [markup.tableOfContents]
+      startLevel = 2
+      endLevel = 3
+    [markup.highlight]
+      noclasses = false
+  ```
+
+### Build theme assets
+
+- cd themes/hugo-docs-theme
+- npm install
+- npm run build
+
+This will build the theme assets and place them inside `assets/dist` folder.
+
+### Start the Hugo server
+
+Run the following command at the root of your Hugo site to start the Hugo server.
+
+```bash
+hugo server
+```
+
+Now you can access the site at [http://localhost:1313](http://localhost:1313).
+
+
 ## Config
 
 ### Left Nav Heading
