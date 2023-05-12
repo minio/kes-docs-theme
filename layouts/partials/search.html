@@ -7,26 +7,36 @@
 			type="text"
 			id="search-input"
 			class="peer z-[2] h-11 w-full rounded bg-white px-3 pl-10 pr-10 text-sm
-		text-body placeholder:text-muted valid:rounded-br-none valid:rounded-bl-none focus:outline-none dark:bg-dark-100"
+		text-body placeholder:text-muted valid:rounded-bl-none valid:rounded-br-none focus:outline-none dark:bg-dark-100"
 			placeholder="{{ i18n "form_placeholder_search" }}"
 			data-site-base-url="{{ .Site.BaseURL }}"
 			data-site-lang="{{ .Site.Language.Lang }}"
 			required
 		/>
 
+		<i class="search-shortcut absolute right-4 top-3.5 z-[2] text-xs not-italic peer-valid:hidden rm:hidden"></i>
+
 		<button
-			class="search-clear absolute right-2.5 top-0 bottom-0 z-[5] my-auto hidden h-6 w-6 place-content-center rounded text-muted hover:bg-light-200 peer-valid:grid rm:grid dark:hover:bg-dark-200"
+			class="search-clear absolute bottom-0 right-2.5 top-0 z-[5] my-auto hidden h-6 w-6 place-content-center rounded text-muted hover:bg-light-200 peer-valid:grid rm:grid dark:hover:bg-dark-200"
+			type="button"
 		>
 			<svg class="h-2 w-2">
 				<use xlink:href="/img/svg-sprite.svg#close"></use>
 			</svg>
+			<span class="sr-only">Close search</span>
 		</button>
 
 		<ul
 			id="search-results"
-			class="absolute top-full left-0 z-[2] hidden w-full rounded-bl rounded-br bg-light-200 p-3 text-sm text-muted peer-valid:block dark:bg-dark-0"
+			class="absolute left-0 top-full z-[2] hidden w-full rounded-bl rounded-br bg-light-200 p-3 text-sm text-muted peer-valid:block dark:bg-dark-0"
 		></ul>
 
-		<i class="search-clear fixed top-0 left-0 z-[1] hidden h-full w-full bg-black/25 peer-valid:block rm:block dark:bg-[#10151cd9]"></i>
+		<button
+			type="button"
+			role="button"
+			class="search-clear fixed left-0 top-0 z-[1] hidden h-full w-full bg-black/25 peer-valid:block rm:block dark:bg-[#10151cd9]"
+		>
+			<span class="sr-only">Close search</span>
+		</button>
 	</div>
 </div>
