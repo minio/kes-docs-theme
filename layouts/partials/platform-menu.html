@@ -5,10 +5,10 @@
 				{{ if eq .Name "Linux" }}
 					<span class="relative mr-2 hidden h-5 w-5 place-content-center md:grid">
 						<svg class="absolute h-full w-full group-[&.active]:hidden">
-							<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}-logo-inactive"></use>
+							<use xlink:href="./img/svg-sprite.svg#{{ .Pre }}-logo-inactive"></use>
 						</svg>
 						<svg class="absolute hidden h-full w-full group-[&.active]:block">
-							<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}-logo"></use>
+							<use xlink:href="./img/svg-sprite.svg#{{ .Pre }}-logo"></use>
 						</svg>
 					</span>
 				{{ else }}
@@ -21,7 +21,7 @@
                             group-[&.active]:text-[#0076d2]
                         -->
 						<svg class="h-full w-full">
-							<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}-logo"></use>
+							<use xlink:href="./img/svg-sprite.svg#{{ .Pre }}-logo"></use>
 						</svg>
 					</span>
 				{{ end }}
@@ -33,7 +33,7 @@
 			class="search-toggle group -mr-2 ml-auto hidden h-11 w-11 place-content-center place-items-center rounded text-muted hover:bg-light-300 hover:text-body nrm:hidden dark:border-slate-500 dark:hover:bg-dark-300 lg:grid"
 		>
 			<svg class="h-3.5 w-3.5">
-				<use xlink:href="/img/svg-sprite.svg#search"></use>
+				<use xlink:href="./img/svg-sprite.svg#search"></use>
 			</svg>
 
 			<i
