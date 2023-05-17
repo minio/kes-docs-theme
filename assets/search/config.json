@@ -5,4 +5,3 @@
   "indexConfig": {{ .Site.Params.GeekdocSearchConfig | jsonify }},
   "showParent": {{ if .Site.Params.GeekdocSearchShowParent }}true{{ else }}false{{ end }}
 }
-out ma
