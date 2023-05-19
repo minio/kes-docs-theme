@@ -162,7 +162,7 @@ Replace `path/to/file.md` with a folder and/or file path of any level under the 
 
 ### `navHidden`
 
-Avoid the theme from embedding the page within the navigation.
+Prevent the theme from including the page in the site navigation.
 
 e.g. `navHidden: true`
 
