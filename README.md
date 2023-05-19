@@ -168,4 +168,4 @@ e.g. `navHidden: true`
 
 ### `heading`
 
-Treat the left nav link as a grou heading.
+Treat the left nav link as a group heading.
