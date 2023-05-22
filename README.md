@@ -2,7 +2,8 @@
 
 ## Usage
 
-Follow the steps below to create a new Hugo site with the MinIO Hugo Docs theme. Make sure to install [Node.js](https://nodejs.org/en) and [Hugo](https://gohugo.io/installation/) before running the commands.
+Follow the steps below to create a new Hugo site with the MinIO Hugo Docs theme. Make sure to install [Node.js](https://nodejs.org/en) and
+[Hugo](https://gohugo.io/installation/) before running the commands.
 
 ### Create Hugo site
 
@@ -16,12 +17,13 @@ echo "theme = 'hugo-docs-theme'" >> config.toml
 
 ### Update config.toml
 
-- Set the `baseURL` to the URL of your site or `/`.
-- Copy `params`, `markup`, and `menu` from `hugo-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the site menu, syntax highlighting and TOC depth.
-- Optionally, you can set the [`relativeURLs`](https://gohugo.io/content-management/urls/#relative-urls) to `True` to enable relative URLs based on your deployement requirements.
+-   Set the `baseURL` to the URL of your site or `/`.
+-   Copy `params`, `markup`, and `menu` from `hugo-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the site menu, syntax highlighting
+    and TOC depth.
+-   Optionally, you can set the [`relativeURLs`](https://gohugo.io/content-management/urls/#relative-urls) to `True` to enable relative URLs based on your
+    deployement requirements.
 
 ### Build theme assets
-
 
 ```bash
 cd themes/hugo-docs-theme
@@ -41,19 +43,17 @@ hugo server
 
 Now you can access the site at [http://localhost:1313](http://localhost:1313).
 
+## Left Nav
 
-## Config
+### Heading
 
-### Left Nav Heading
+You can customize the text that displays at the top of the left navigation by site language. You can make the text a link and customize where the link points.
 
-You can customize the text that displays at the top of the left navigation by site language.
-You can make the text a link and customize where the link points.
-
-#### Link Text
+### Link Text
 
 Define the link text in `theme/minio-hugo-docs/assets/i18n/[languageCode].yaml` at the `nav_title` entry.
 
-#### Hyperlink
+### Hyperlink
 
 Define the side nav title link in `config.toml` in the `homeLink` parameter.
 
@@ -66,16 +66,15 @@ Define the side nav title link in `config.toml` in the `homeLink` parameter.
 
 Hugo uses shortcodes to extend what is normally available with Markdown.
 
-
 ### Admonitions
 
 We have added a shortcode that supports five admonition types
 
-- Note
-- Tip
-- Caution
-- Warning
-- important
+-   Note
+-   Tip
+-   Caution
+-   Warning
+-   important
 
 ```Markdown
 {{< admonition title="Admonition title" type="[note | tip | caution | warning | important]" >}}
@@ -87,7 +86,7 @@ The admonition title (`title="Admonition title"`) is optional.
 
 ```Markdown
 {{< admonition title="Warning: Data loss!" type="warning" >}}
-Using this command causes data loss. 
+Using this command causes data loss.
 Use with caution.
 {{< /admonition >}}
 ```
@@ -98,11 +97,11 @@ Tabbed-view navigation is supported using the following shortcode.
 
 ```
 {{< tabs "uniqueid" >}}
-{{< tab "tab 1 title" >}} 
-  tab 1 Content 
+{{< tab "tab 1 title" >}}
+  tab 1 Content
 {{< /tab >}}
-{{< tab "tab 2 title" >}} 
-  tab 2 Content 
+{{< tab "tab 2 title" >}}
+  tab 2 Content
 {{< /tab >}}
 ...
 {{< /tabs >}}
@@ -110,7 +109,7 @@ Tabbed-view navigation is supported using the following shortcode.
 
 ### Cards
 
-Use the following shortcode to create card. 
+Use the following shortcode to create card.
 
 ```
 {{< cards >}}
@@ -150,8 +149,7 @@ Card 3 content
 
 ### include
 
-Reuse content from a folder in multiple page files.
-Similar to Flare Snippets, Sphinx Includes, Antora partials, and similar content reuse mechanisms.
+Reuse content from a folder in multiple page files. Similar to Flare Snippets, Sphinx Includes, Antora partials, and similar content reuse mechanisms.
 
 ```
 {{% include "path/to/file.md" %}}
@@ -159,3 +157,15 @@ Similar to Flare Snippets, Sphinx Includes, Antora partials, and similar content
 
 Replace `path/to/file.md` with a folder and/or file path of any level under the site's `content` folder.
 
+
+## Custom Frontmatter params
+
+### `navHidden`
+
+Prevent the theme from including the page in the site navigation.
+
+e.g. `navHidden: true`
+
+### `heading`
+
+Treat the left nav link as a group heading.
