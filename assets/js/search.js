@@ -2,9 +2,10 @@ import groupBy from "lodash/groupBy";
 import truncate from "lodash/truncate";
 import { FlexSearch } from "flexsearch/dist/flexsearch.compact";
 import { Validator } from "@cfworker/json-schema";
-import { iconSprite, isMac, isReadMode } from "./utils";
+import { iconSprite, isMac, isReadMode, relativePathDepth } from "./utils";
 
 const input = document.querySelector("#search-input");
+const lang = input ? input.dataset.siteLang : "";
 
 const init = (input, searchConfig) => {
 	input.removeEventListener("focus", init);
@@ -13,7 +14,7 @@ const init = (input, searchConfig) => {
 		tokenize: "forward",
 	};
 	const indexCfg = searchConfig.indexConfig ? searchConfig.indexConfig : indexCfgDefaults;
-	const dataUrl = searchConfig.dataFile;
+	const dataUrl = relativePathDepth() + "/search/" + lang + ".data.min.json";
 
 	indexCfg.document = {
 		key: "id",
@@ -93,11 +94,11 @@ const search = (input, results, searchConfig) => {
 };
 
 /**
- * Creates links to given fields and either returns them in an array or attaches them to a target element
- * @param {Object} fields Page to which the link should point to
- * @param {HTMLElement} target Element to which the links should be attatched
- * @returns {Array} If target is not specified, returns an array of built links
- */
+* Creates links to given fields and either returns them in an array or attaches them to a target element
+* @param {Object} fields Page to which the link should point to
+* @param {HTMLElement} target Element to which the links should be attatched
+* @returns {Array} If target is not specified, returns an array of built links
+*/
 const createLinks = (pages, target, showDesc) => {
 	const items = [];
 
@@ -106,7 +107,7 @@ const createLinks = (pages, target, showDesc) => {
 			a = item.appendChild(document.createElement("a")),
 			entry = a.appendChild(document.createElement("span"));
 
-		a.href = page.href;
+		a.href = relativePathDepth() + page.href;
 		entry.textContent = page.title;
 		a.setAttribute("class", "text-body py-2 px-3 block hover:bg-slate-500/10 dark:hover:bg-dark-100/50 focus:outline-none focus:bg-slate-300/80 rounded");
 
@@ -178,22 +179,19 @@ const urlPath = (rawURL) => {
 };
 
 /**
- * Part of [axios](https://github.com/axios/axios/blob/master/lib/helpers/combineURLs.js).
- * Creates a new URL by combining the specified URLs
- *
- * @param {string} baseURL The base URL
- * @param {string} relativeURL The relative URL
- * @returns {string} The combined URL
- */
+* Part of [axios](https://github.com/axios/axios/blob/master/lib/helpers/combineURLs.js).
+* Creates a new URL by combining the specified URLs
+*
+* @param {string} baseURL The base URL
+* @param {string} relativeURL The relative URL
+* @returns {string} The combined URL
+*/
 const combineURLs = (baseURL, relativeURL) => {
 	return relativeURL ? baseURL.replace(/\/+$/, "") + "/" + relativeURL.replace(/^\/+/, "") : baseURL;
 };
 
 export const siteSearch = () => {
 	const results = document.querySelector("#search-results");
-	const basePath = urlPath(input ? input.dataset.siteBaseUrl : "");
-	const lang = input ? input.dataset.siteLang : "";
-
 	const configSchema = {
 		type: "object",
 		properties: {
@@ -216,7 +214,7 @@ export const siteSearch = () => {
 
 	if (!input) return;
 
-	getJson(combineURLs(basePath, "/search/" + lang + ".config.min.json"), function (searchConfig) {
+	getJson(relativePathDepth() + "/search/" + lang + ".config.min.json", function (searchConfig) {
 		const validationResult = validator.validate(searchConfig);
 
 		if (!validationResult.valid)
