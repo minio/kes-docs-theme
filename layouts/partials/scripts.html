@@ -5,6 +5,7 @@
 	<script src="{{ $script.Permalink }}"></script>
 {{ else }}
 	{{ $script := $script | minify | fingerprint }}
+	<script data-rel-url="{{ .Permalink }}"></script>
 	<script src="{{ $script.Permalink }}"></script>
 {{ end }}
 

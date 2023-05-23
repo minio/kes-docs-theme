@@ -2,9 +2,10 @@ import groupBy from "lodash/groupBy";
 import truncate from "lodash/truncate";
 import { FlexSearch } from "flexsearch/dist/flexsearch.compact";
 import { Validator } from "@cfworker/json-schema";
-import { iconSprite, isMac, isReadMode } from "./utils";
+import { iconSprite, isMac, isReadMode, relativePathDepth } from "./utils";
 
 const input = document.querySelector("#search-input");
+const lang = input ? input.dataset.siteLang : "";
 
 const init = (input, searchConfig) => {
 	input.removeEventListener("focus", init);
@@ -13,7 +14,7 @@ const init = (input, searchConfig) => {
 		tokenize: "forward",
 	};
 	const indexCfg = searchConfig.indexConfig ? searchConfig.indexConfig : indexCfgDefaults;
-	const dataUrl = searchConfig.dataFile;
+	const dataUrl = relativePathDepth() + "/search/" + lang + ".data.min.json";
 
 	indexCfg.document = {
 		key: "id",
@@ -106,7 +107,7 @@ const createLinks = (pages, target, showDesc) => {
 			a = item.appendChild(document.createElement("a")),
 			entry = a.appendChild(document.createElement("span"));
 
-		a.href = page.href;
+		a.href = relativePathDepth() + page.href;
 		entry.textContent = page.title;
 		a.setAttribute("class", "text-body py-2 px-3 block hover:bg-slate-500/10 dark:hover:bg-dark-100/50 focus:outline-none focus:bg-slate-300/80 rounded");
 
@@ -191,9 +192,6 @@ const combineURLs = (baseURL, relativeURL) => {
 
 export const siteSearch = () => {
 	const results = document.querySelector("#search-results");
-	const basePath = urlPath(input ? input.dataset.siteBaseUrl : "");
-	const lang = input ? input.dataset.siteLang : "";
-
 	const configSchema = {
 		type: "object",
 		properties: {
@@ -216,7 +214,7 @@ export const siteSearch = () => {
 
 	if (!input) return;
 
-	getJson(combineURLs(basePath, "/search/" + lang + ".config.min.json"), function (searchConfig) {
+	getJson(relativePathDepth() + "/search/" + lang + ".config.min.json", function (searchConfig) {
 		const validationResult = validator.validate(searchConfig);
 
 		if (!validationResult.valid)
