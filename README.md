@@ -11,22 +11,22 @@ Follow the steps below to create a new Hugo site with the MinIO Hugo Docs theme.
 hugo new site [site-name]
 cd [site-name]
 git init
-git submodule add https://github.com/miniohq/hugo-docs-theme themes/hugo-docs-theme
-echo "theme = 'hugo-docs-theme'" >> config.toml
+git submodule add https://github.com/minio/kes-docs-theme themes/kes-docs-theme
+echo "theme = 'kes-docs-theme'" >> config.toml
 ```
 
 ### Update config.toml
 
 -   Set the `baseURL` to the URL of your site or `/`.
--   Copy `params`, `markup`, and `menu` from `hugo-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the site menu, syntax highlighting
+-   Copy `params`, `markup`, and `menu` from `kes-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the site menu, syntax highlighting
     and TOC depth.
 -   Optionally, you can set the [`relativeURLs`](https://gohugo.io/content-management/urls/#relative-urls) to `True` to enable relative URLs based on your
-    deployement requirements.
+    deployment requirements.
 
 ### Build theme assets
 
 ```bash
-cd themes/hugo-docs-theme
+cd themes/kes-docs-theme
 npm install
 npm run build
 ```
@@ -51,7 +51,7 @@ You can customize the text that displays at the top of the left navigation by si
 
 ### Link Text
 
-Define the link text in `theme/minio-hugo-docs/assets/i18n/[languageCode].yaml` at the `nav_title` entry.
+Define the link text in `theme/kes-docs-theme/assets/i18n/[languageCode].yaml` at the `nav_title` entry.
 
 ### Hyperlink
 
