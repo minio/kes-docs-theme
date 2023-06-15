@@ -1,11 +1,11 @@
-<header class="header relative z-10 flex-shrink-0 bg-[#031733] text-md nrm:pb-5 dark:bg-dark-0" id="header">
+<header class="header relative z-10 flex-shrink-0 bg-[#031733] text-md dark:bg-dark-0" id="header">
 	<div class="relative mx-auto w-full px-5 nrm:max-w-container lg:px-7">
 		<div class="flex h-12 items-center border-white/25 nrm:mb-2 nrm:border-b dark:border-[#273140]">
 			<svg class="flex-shrink-0 text-theme-red dark:text-heading" width="100" height="15">
 				<use xlink:href="/img/svg-sprite.svg#minio-logo"></use>
 			</svg>
 
-			<div class="ml-5 hidden text-sm font-medium text-white nrm:hidden dark:text-heading sm:block">Documentation</div>
+			{{ partial "docs-menu" . }}
 
 			<i class="ml-auto"></i>
 
@@ -28,7 +28,7 @@
 				</svg>
 			</button>
 
-			<div class="bottom-5 right-7 flex nrm:absolute">
+			<div class="bottom-10 right-7 flex nrm:absolute">
 				<button
 					type="button"
 					class="ml-2 grid h-8 w-8 place-content-center rounded border bg-white pt-px text-body hover:opacity-90 dark:border-slate-500 dark:bg-dark-0"
@@ -56,25 +56,27 @@
 
 			{{ range .Site.Menus.main }}
 				<!-- prettier-ignore -->
-				<div class="{{ if not (.Params.Wide) }}relative {{ end }}{{ if eq .Name "Download" }}ml-auto {{ end }}group">
-					<!-- prettier-ignore -->
-					{{ if .HasChildren }}
-					<span class="relative flex items-center py-2 text-white dark:text-body dark:hover:text-heading rm:text-heading cursor-pointer rm:px-3">
+				<div class="{{ if not (.Params.Wide) }}relative {{ end }}{{ if eq .Name " Download" }}ml-auto {{ end
+				}}group">
+				<!-- prettier-ignore -->
+				{{ if .HasChildren }}
+				<span
+					class="relative flex items-center py-2 text-white dark:text-body dark:hover:text-heading rm:text-heading cursor-pointer rm:px-3">
 					{{ else }}
-						{{ if eq .Name "Download" }}
-							<a class="py-1 px-4 flex rounded justify-center text-white rm:text-heading rm:hover:text-white dark:text-body border border-theme-red transition-colors duration-300 dark:border-slate-500 hover:bg-theme-red hover:text-white dark:hover:bg-dark-200 rm:px-3 rm:mx-3 rm:my-4 rm:py-1.5"
-								href="{{ .URL }}">
+					{{ if eq .Name "Download" }}
+					<a class="py-1 px-4 flex rounded justify-center text-white rm:text-heading rm:hover:text-white dark:text-body border border-theme-red transition-colors duration-300 dark:border-slate-500 hover:bg-theme-red hover:text-white dark:hover:bg-dark-200 rm:px-3 rm:mx-3 rm:my-4 rm:py-1.5"
+						href="{{ .URL }}">
 						{{ else }}
-							<a class="relative py-2 flex text-white dark:text-body dark:hover:text-heading rm:text-heading rounded rm:px-3 rm:hover:bg-light-100 drm:hover:bg-dark-200"
-								href="{{ .URL }}">
-						{{ end }}
-					{{ end }}
-					<span class="rm:font-medium">{{ .Name }}</span>
-					{{ if .Params.Dropdown }}
+						<a class="relative py-2 flex text-white dark:text-body dark:hover:text-heading rm:text-heading rounded rm:px-3 rm:hover:bg-light-100 drm:hover:bg-dark-200"
+							href="{{ .URL }}">
+							{{ end }}
+							{{ end }}
+							<span class="rm:font-medium">{{ .Name }}</span>
+							{{ if .Params.Dropdown }}
 					<i
-						class="absolute left-0 right-0 bottom-0 mx-auto inline-block h-0 w-0 border-x-[4px] border-b-[3px] border-l-transparent border-b-white border-r-transparent opacity-0 group-hover:opacity-100 rm:hidden dark:border-b-dark-100"
+						class="absolute bottom-0 left-0 right-0 mx-auto inline-block h-0 w-0 border-x-[4px] border-b-[3px] border-b-white border-l-transparent border-r-transparent opacity-0 group-hover:opacity-100 rm:hidden dark:border-b-dark-100"
 					></i>
-					<svg class="mt-1 ml-2 rm:hidden" width="9" height="5">
+					<svg class="ml-2 mt-1 rm:hidden" width="9" height="5">
 						<use xlink:href="/img/svg-sprite.svg#chevron-down"></use>
 					</svg>
 				{{ else }}
@@ -84,14 +86,14 @@
 						></i>
 					{{ end }}
 				{{ end }}
-					<!-- prettier-ignore -->
-					{{ if .HasChildren }}
-					</span>
-					{{ else }}
-					</a>
-					{{ end }}
+							<!-- prettier-ignore -->
+							{{ if .HasChildren }}
+				</span>
+				{{ else }}
+				</a>
+				{{ end }}
 
-					{{ if .HasChildren }}
+				{{ if .HasChildren }}
 					<div
 						class="{{ if .Params.Wide }}
 							w-full
@@ -119,7 +121,7 @@
 										</span>
 										{{ range .Children }}
 											{{ if .HasChildren }}
-												<div class="flex items-start rounded py-2 px-3 hover:bg-light-100 dark:hover:bg-dark-200">
+												<div class="flex items-start rounded px-3 py-2 hover:bg-light-100 dark:hover:bg-dark-200">
 													<svg class="mr-3 h-8 w-8 rm:hidden">
 														<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}"></use>
 													</svg>
@@ -159,7 +161,7 @@
 						</div>
 					</div>
 				{{ end }}
-				</div>
+			</div>
 			{{ end }}
 		</nav>
 
