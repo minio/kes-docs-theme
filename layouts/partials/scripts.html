@@ -1,6 +1,6 @@
 <script>
 	var isDmActive = JSON.parse(localStorage.getItem("dark-mode")) || false;
-	let isRmActive = JSON.parse(localStorage.getItem("read-mode")) || false;
+	var isRmActive = JSON.parse(localStorage.getItem("read-mode")) || false;
 
 	document.documentElement.classList.toggle("read-mode", isRmActive);
 	document.documentElement.classList.toggle("dark", isDmActive);
