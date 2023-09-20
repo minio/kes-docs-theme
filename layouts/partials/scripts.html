@@ -1,3 +1,11 @@
+<script>
+	var isDmActive = JSON.parse(localStorage.getItem("dark-mode")) || false;
+	var isRmActive = JSON.parse(localStorage.getItem("read-mode")) || false;
+
+	document.documentElement.classList.toggle("read-mode", isRmActive);
+	document.documentElement.classList.toggle("dark", isDmActive);
+</script>
+
 {{ $script := resources.Get "/dist/app.js" }}
 
 {{ if .Site.IsServer }}
