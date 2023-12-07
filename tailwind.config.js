@@ -131,6 +131,10 @@ module.exports = {
 							marginTop: "0",
 							marginBottom: "0",
 						},
+						"li code, ol code": {
+							marginTop: "0",
+							marginBottom: "0",
+						},
 						img: {
 							borderRadius: "0.1875rem",
 							cursor: "pointer",
