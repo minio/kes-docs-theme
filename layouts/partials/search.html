@@ -6,7 +6,7 @@
 		<input
 			type="text"
 			id="search-input"
-			class="peer z-[2] h-11 w-full rounded bg-white px-3 pl-10 pr-10 text-sm
+			class="peer z-[2] h-11 w-full rounded-md bg-white px-3 pl-10 pr-10 text-sm
 		text-body placeholder:text-muted valid:rounded-bl-none valid:rounded-br-none focus:outline-none dark:bg-dark-100"
 			placeholder="{{ i18n "form_placeholder_search" }}"
 			data-site-base-url="{{ .Site.BaseURL }}"
@@ -14,7 +14,7 @@
 			required
 		/>
 
-		<i class="search-shortcut absolute right-4 top-3.5 z-[2] text-xs not-italic peer-valid:hidden rm:hidden"></i>
+		<i class="search-shortcut absolute right-4 top-3 z-[2] text-xs not-italic peer-valid:hidden rm:hidden"></i>
 
 		<button
 			class="search-clear absolute bottom-0 right-2.5 top-0 z-[5] my-auto hidden h-6 w-6 place-content-center rounded text-muted hover:bg-light-200 peer-valid:grid rm:grid dark:hover:bg-dark-200"
