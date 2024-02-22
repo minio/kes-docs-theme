@@ -56,8 +56,7 @@
 
 			{{ range .Site.Menus.main }}
 				<!-- prettier-ignore -->
-				<div class="{{ if not (.Params.Wide) }}relative {{ end }}{{ if eq .Name "Download" }}ml-auto {{ end
-				}}group">
+				<div class="{{ if not (.Params.Wide) }}relative {{ end }}{{ if eq .Name "Download" }}ml-auto {{ end }}group">
 				<!-- prettier-ignore -->
 				{{ if .HasChildren }}
 				<span
@@ -82,18 +81,20 @@
 				{{ else }}
 					{{ if not (eq .Name "Download") }}
 						<i
-							class="transition-[opacity, bottom] absolute bottom-0.5 left-0 h-px w-full bg-current opacity-0 duration-300 group-hover:bottom-2 group-hover:opacity-100 rm:hidden"
+							class="transition-[opacity, bottom] absolute -bottom-3 left-0 h-1 w-full bg-current opacity-0 duration-300 group-hover:-bottom-1 group-hover:opacity-100 rm:hidden"
 						></i>
 					{{ end }}
 				{{ end }}
-							<!-- prettier-ignore -->
-							{{ if .HasChildren }}
-				</span>
-				{{ else }}
-				</a>
-				{{ end }}
+				<!-- prettier-ignore -->
+				{{ if .HasChildren }}</span>{{ else }}</a>{{ end }}
+				<!-- prettier-ignore -->
 
 				{{ if .HasChildren }}
+					{{- $cols := "grid-cols-3" }}
+					{{- if eq .Params.Cols 4 }}
+						{{- $cols = "grid-cols-4" }}
+					{{- end }}
+ 
 					<div
 						class="{{ if .Params.Wide }}
 							w-full
@@ -103,15 +104,15 @@
 					>
 						<div
 							class="{{ if .Params.Wide }}
-								nrm:flex nrm:p-7
+								{{ $cols }} nrm:grid nrm:p-10
 							{{ else }}
 								nrm:p-5
 							{{ end }}scrollbar gap-5 overflow-y-auto nrm:max-h-[calc(100vh_-_7.5rem)]"
 						>
-							{{ if .Params.Wide }}
+							{{ if eq .Name "Product" }}
 								{{ range .Children }}
 									{{ $productChild := . }}
-									<div class="nrm:w-4/12">
+									<div>
 										<span class="mt-1 block h-6 px-3 text-xs uppercase text-muted rm:mt-3">
 											{{ if not (eq $productChild.Name "Others") }}
 												{{ .Name }}
@@ -154,7 +155,7 @@
 								{{ range .Children }}
 									<a class="block rounded px-3 py-2 hover:bg-light-100 dark:hover:bg-dark-200" href="{{ .URL }}">
 										<span class="block text-body rm:text-sm nrm:font-medium">{{ .Name }}</span>
-										<span class="mt-1 block text-sm text-muted rm:hidden">{{ .Pre }}</span>
+										<span class="mt-1 block text-xs opacity-90 rm:hidden">{{ .Pre }}</span>
 									</a>
 								{{ end }}
 							{{ end }}
