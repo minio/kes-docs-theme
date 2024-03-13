@@ -18,10 +18,8 @@ echo "theme = 'kes-docs-theme'" >> config.toml
 ### Update config.toml
 
 -   Set the `baseURL` to the URL of your site or `/`.
--   Copy `params`, `markup`, and `menu` from `kes-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the site menu, syntax highlighting
-    and TOC depth.
--   Optionally, you can set the [`relativeURLs`](https://gohugo.io/content-management/urls/#relative-urls) to `True` to enable relative URLs based on your
-    deployment requirements.
+-   Copy `params`, `markup`, and `menu` from `kes-docs-theme/theme.toml` to your site's `config.toml` file. This will enable the platform menu, syntax highlighting and TOC depth.
+-   Optionally, you can set the [`relativeURLs`](https://gohugo.io/content-management/urls/#relative-urls) to `True` to enable relative URLs based on your deployment requirements.
 
 ### Build theme assets
 
