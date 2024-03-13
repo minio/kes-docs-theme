@@ -1,3 +1,34 @@
+{{ $linkItem := "relative rounded flex cursor-pointer items-center py-2 text-white rm:text-body dark:text-body rm:px-3" }}
+{{ $linkItemAlt := printf "%s %s" $linkItem "group rm:hover:bg-light-100 rm:dark:hover:bg-dark-200" }}
+{{ $link := "block rounded px-3 py-2 text-body hover:bg-light-100 dark:hover:bg-dark-200 rm:text-sm" }}
+{{ $linkFeature := "block rounded px-3 py-2 hover:bg-light-100 dark:hover:bg-dark-200 rm:py-1.5 hover:text-body" }}
+{{ $dropdownMenu := "nrm:max-h-[calc(100vh_-_7rem)] overflow-y-auto scrollbar grid-cols-4 gap-6 pointer-events-none left-0 top-full z-10 mb-5 w-full rounded-md bg-white group-hover:pointer-events-auto group-hover:opacity-100 nrm:grid nrm:p-6 nrm:absolute nrm:opacity-0 nrm:shadow-lg dark:bg-dark-100" }}
+{{ $linkDescription := "mt-1 block leading-relaxed text-muted rm:hidden" }}
+{{ $linkTitle := "block nrm:font-medium rm:text-body" }}
+
+{{/* Caret and down arrow indicators for nav dropdowns */}}
+{{ define "nav-item-helpers" }}
+	<i
+		class="absolute inset-x-0 bottom-0 mx-auto inline-block size-0 border-x-[4px] border-b-[3px] border-x-transparent border-b-white opacity-0 group-hover:opacity-100 rm:hidden dark:border-b-dark-100"
+	></i>
+	<svg class="ml-2 mt-1 rm:hidden" width="9" height="5">
+		<use xlink:href="./img/svg-sprite.svg#chevron-down"></use>
+	</svg>
+{{ end }}
+
+{{/* Product feature title */}}
+{{ define "feature-title" }}
+	<div class="mx-3 my-2 border-b border-light-200 pb-3 font-bold leading-none text-black rm:mt-5 nrm:text-lg dark:border-dark-200 dark:text-heading">
+		{{ . }}
+	</div>
+{{ end }}
+
+{{/* Animated line on nav-link hover */}}
+{{ define "line" }}
+	<i class="absolute inset-x-0 -bottom-2 h-1 bg-white opacity-0 transition-all duration-300 group-hover:-bottom-1 group-hover:opacity-100 rm:hidden"></i>
+{{ end }}
+
+
 <header class="header relative z-10 flex-shrink-0 bg-[#031733] text-md dark:bg-dark-0" id="header">
 	<div class="relative mx-auto w-full px-5 nrm:max-w-container lg:px-7">
 		<div class="flex h-12 items-center border-white/25 nrm:mb-2 nrm:border-b dark:border-[#273140]">
@@ -6,6 +37,7 @@
 			</svg>
 
 			{{ partial "docs-menu" . }}
+
 
 			<i class="ml-auto"></i>
 
@@ -43,7 +75,7 @@
 		</div>
 
 		<nav
-			class="relative items-center gap-9 rm:fixed rm:right-0 rm:top-0 rm:z-10 rm:hidden rm:h-full rm:w-80 rm:overflow-auto rm:bg-white rm:p-3 nrm:mb-8 nrm:flex drm:bg-dark-100"
+			class="relative items-center gap-8 rm:fixed rm:right-0 rm:top-0 rm:z-10 rm:hidden rm:h-full rm:w-80 rm:overflow-auto rm:bg-white rm:p-3 nrm:mb-8 nrm:flex drm:bg-dark-100"
 			id="top-navigation"
 		>
 			<div class="flex justify-end nrm:hidden">
@@ -54,116 +86,207 @@
 				</button>
 			</div>
 
-			{{ range .Site.Menus.main }}
-				<!-- prettier-ignore -->
-				<div class="{{ if not (.Params.Wide) }}relative {{ end }}{{ if eq .Name "Download" }}ml-auto {{ end }}group">
-				<!-- prettier-ignore -->
-				{{ if .HasChildren }}
-				<span
-					class="relative flex items-center py-2 text-white dark:text-body dark:hover:text-heading rm:text-heading cursor-pointer rm:px-3">
-					{{ else }}
-					{{ if eq .Name "Download" }}
-					<a class="py-1 px-4 flex rounded justify-center text-white rm:text-heading rm:hover:text-white dark:text-body border border-theme-red transition-colors duration-300 dark:border-slate-500 hover:bg-theme-red hover:text-white dark:hover:bg-dark-200 rm:px-3 rm:mx-3 rm:my-4 rm:py-1.5"
-						href="{{ .URL }}">
-						{{ else }}
-						<a class="relative py-2 flex text-white dark:text-body dark:hover:text-heading rm:text-heading rounded rm:px-3 rm:hover:bg-light-100 drm:hover:bg-dark-200"
-							href="{{ .URL }}">
-							{{ end }}
-							{{ end }}
-							<span class="rm:font-medium">{{ .Name }}</span>
-							{{ if .Params.Dropdown }}
-					<i
-						class="absolute bottom-0 left-0 right-0 mx-auto inline-block h-0 w-0 border-x-[4px] border-b-[3px] border-b-white border-l-transparent border-r-transparent opacity-0 group-hover:opacity-100 rm:hidden dark:border-b-dark-100"
-					></i>
-					<svg class="ml-2 mt-1 rm:hidden" width="9" height="5">
-						<use xlink:href="/img/svg-sprite.svg#chevron-down"></use>
-					</svg>
-				{{ else }}
-					{{ if not (eq .Name "Download") }}
-						<i
-							class="transition-[opacity, bottom] absolute -bottom-3 left-0 h-1 w-full bg-current opacity-0 duration-300 group-hover:-bottom-1 group-hover:opacity-100 rm:hidden"
-						></i>
-					{{ end }}
-				{{ end }}
-				<!-- prettier-ignore -->
-				{{ if .HasChildren }}</span>{{ else }}</a>{{ end }}
-				<!-- prettier-ignore -->
+			{{/* Product */}}
+			<div class="group">
+				<span class="{{ $linkItem }}">
+					Product
+					{{ template "nav-item-helpers" . }}
+				</span>
 
-				{{ if .HasChildren }}
-					{{- $cols := "grid-cols-3" }}
-					{{- if eq .Params.Cols 4 }}
-						{{- $cols = "grid-cols-4" }}
-					{{- end }}
- 
-					<div
-						class="{{ if .Params.Wide }}
-							w-full
-						{{ else }}
-							nrm:w-[24rem]
-						{{ end }} pointer-events-none left-0 top-full z-10 mb-5 rounded-md bg-white group-hover:pointer-events-auto group-hover:opacity-100 nrm:absolute nrm:opacity-0 nrm:shadow-lg dark:bg-dark-100"
-					>
-						<div
-							class="{{ if .Params.Wide }}
-								{{ $cols }} nrm:grid nrm:p-10
-							{{ else }}
-								nrm:p-5
-							{{ end }}scrollbar gap-5 overflow-y-auto nrm:max-h-[calc(100vh_-_7.5rem)]"
-						>
-							{{ if eq .Name "Product" }}
-								{{ range .Children }}
-									{{ $productChild := . }}
-									<div>
-										<span class="mt-1 block h-6 px-3 text-xs uppercase text-muted rm:mt-3">
-											{{ if not (eq $productChild.Name "Others") }}
-												{{ .Name }}
-											{{ else }}
-												<i class="relative -bottom-1 block h-px bg-light-100 nrm:hidden dark:bg-dark-200"></i>
-											{{ end }}
-										</span>
-										{{ range .Children }}
-											{{ if .HasChildren }}
-												<div class="flex items-start rounded px-3 py-2 hover:bg-light-100 dark:hover:bg-dark-200">
-													<svg class="mr-3 h-8 w-8 rm:hidden">
-														<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}"></use>
-													</svg>
-													<div class="flex-1">
-														<a class="block text-body rm:text-sm nrm:font-medium" href="{{ .URL }}">{{ .Name }}</a>
-														{{ range .Children }}
-															<a class="mt-1 block pr-3 text-sm text-muted hover:underline rm:hidden" href="{{ .URL }}"
-																>{{ .Name }}</a
-															>
-														{{ end }}
-													</div>
-												</div>
-											{{ else }}
-												<a
-													class="flex items-center rounded px-3 py-2 text-body hover:bg-light-100 rm:text-sm nrm:font-medium dark:hover:bg-dark-200"
-													href="{{ .URL }}"
-												>
-													{{ if eq $productChild.Name "Others" }}
-														<svg class="mr-3 h-8 w-8 rm:hidden">
-															<use xlink:href="/img/svg-sprite.svg#{{ .Pre }}"></use>
-														</svg>
-													{{ end }}
-													{{ .Name }}
-												</a>
-											{{ end }}
-										{{ end }}
-									</div>
-								{{ end }}
-							{{ else }}
-								{{ range .Children }}
-									<a class="block rounded px-3 py-2 hover:bg-light-100 dark:hover:bg-dark-200" href="{{ .URL }}">
-										<span class="block text-body rm:text-sm nrm:font-medium">{{ .Name }}</span>
-										<span class="mt-1 block text-xs opacity-90 rm:hidden">{{ .Pre }}</span>
-									</a>
-								{{ end }}
-							{{ end }}
+				<div class="{{ $dropdownMenu }}">
+					<div class="col-span-2">
+						{{ template "feature-title" "MinIO Enterprise Object Store" }}
+						<a href="/product/enterpriseoverview" class="{{ $link }}">Overview</a>
+						<div class="px-3 py-2 text-body rm:text-sm">Features</div>
+
+						<div class="grid grid-cols-2 pl-5 text-muted rm:text-sm nrm:gap-8">
+							<div>
+								<a href="/product/active-data-replication-for-object-storage" class="{{ $linkFeature }}">Replication </a>
+								<a href="/product/enterprise-object-storage-encryption" class="{{ $linkFeature }}">Encryption</a>
+								<a href="/product/data-immutability-for-object-storage" class="{{ $linkFeature }}">Object Immutability</a>
+								<a href="/product/identity-and-access-management" class="{{ $linkFeature }}"> Identity + Access Mgt </a>
+								<a href="/product/automated-data-tiering-lifecycle-management" class="{{ $linkFeature }}">Information Lifecycle</a>
+								<a href="/product/object-versioning-bucket-versioning" class="{{ $linkFeature }}">Versioning</a>
+								<a href="/product/enterprise/key-management-server" class="{{ $linkFeature }}">Key Management Server</a>
+							</div>
+							<div>
+								<a href="/product/enterprise/object-storage-global-console" class="{{ $linkFeature }}">Console</a>
+								<a href="/product/enterprise/object-store-catalog" class="{{ $linkFeature }}">Catalog</a>
+								<a href="/product/enterprise/object-storage-data-firewall" class="{{ $linkFeature }}">Firewall</a>
+								<a href="/product/enterprise/object-store-cache" class="{{ $linkFeature }}">Cache</a>
+								<a href="/product/enterprise/object-storage-observability" class="{{ $linkFeature }}">Observability</a>
+								<a href="/product/s3-compatibility" class="{{ $linkFeature }}">S3 Compatibility</a>
+							</div>
 						</div>
 					</div>
-				{{ end }}
+					<div>
+						{{ template "feature-title" "MinIO for Public Cloud" }}
+						<a href="/product/multicloud-elastic-kubernetes-service" class="{{ $link }}">AWS</a>
+						<a href="/product/multicloud-google-kubernetes-service" class="{{ $link }}">GCS</a>
+						<a href="/product/multicloud-azure-kubernetes-service" class="{{ $link }} mb-5">Azure</a>
+
+						{{ template "feature-title" "MinIO for Private Cloud" }}
+						<a href="/product/private-cloud-red-hat-openshift" class="{{ $link }}">OpenShift</a>
+						<a href="/product/multicloud-suse-rancher" class="{{ $link }}">SUSE Rancher</a>
+						<a href="/product/private-cloud-vmware-tanzu" class="{{ $link }} mb-5">Tanzu</a>
+
+						{{ template "feature-title" "MinIO for Baremetal" }}
+						<a href="/product/overview" class="{{ $link }}">Linux and Windows</a>
+					</div>
+					<div class="nrm:pt-7">
+						<i class="mx-3 my-2 block border-b border-light-200 dark:border-dark-200"></i>
+
+						<a href="/product/erasure-code-calculator" class="{{ $link }} items-center gap-3 nrm:mb-3 nrm:flex">
+							<svg class="h-7 w-7 rm:hidden">
+								<use xlink:href="./img/svg-sprite.svg#ecc"></use>
+							</svg>
+							Erasure Code Calculator
+						</a>
+						<a href="/product/reference-hardware" class="{{ $link }} items-center gap-3 nrm:flex">
+							<svg class="h-7 w-7 rm:hidden">
+								<use xlink:href="./img/svg-sprite.svg#ref-hardware"></use>
+							</svg>
+							Reference Hardware
+						</a>
+					</div>
+				</div>
 			</div>
-			{{ end }}
+
+			{{/* Solutions */}}
+			<div class="group">
+				<span class="{{ $linkItem }}">
+					Solutions
+					{{ template "nav-item-helpers" . }}
+				</span>
+
+				<div class="{{ $dropdownMenu }}">
+					<a href="/solutions/object-storage-for-ai" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">AI Storage</span>
+						<small class="{{ $linkDescription }}">
+							Object storage is powering the AI revolution. Learn how MinIO is leading the AI storage market through performance at scale.
+						</small>
+					</a>
+					<a href="/solutions/modern-data-lakes-lakehouses" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Modern Datalakes</span>
+						<small class="{{ $linkDescription }}">
+							Modern, multi-engine datalakes depend on object stores that deliver performance at scale. Learn more about this core MinIO use case.
+						</small>
+					</a>
+					<a href="/hybrid-multi-cloud-storage" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Hybrid Cloud</span>
+						<small class="{{ $linkDescription }}">
+							Effective multi-cloud storage strategies rely on utilizing architecture and tools that can function seamlessly across diverse
+							environments.
+						</small>
+					</a>
+					<a href="/solutions/optimize-splunk-smartstore-performance" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Splunk</span>
+						<small class="{{ $linkDescription }}">Find out how MinIO is delivering performance at scale for Splunk SmartStores.</small>
+					</a>
+
+					<a href="/solutions/snowflake" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Snowflake</span>
+						<small class="{{ $linkDescription }}">
+							Query and analyze multiple data sources, including streaming data, residing on MinIO with the Snowflake Data Cloud. No need to move
+							the data, just query using SnowSQL.
+						</small>
+					</a>
+					<a href="/solutions/sqlserver" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">SQL Server</span>
+						<small class="{{ $linkDescription }}"
+							>Discover how to pair SQL Server 2022 with MinIO to run queries on your data on any cloud - without having to move it.</small
+						>
+					</a>
+					<a href="/solutions/hdfs-migration" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">HDFS Migration</span>
+						<small class="{{ $linkDescription }}">
+							Modernize and simplify your big data storage infrastructure with high-performance, Kubernetes-native object storage from MinIO.
+						</small>
+					</a>
+					<a href="/solutions/vmware" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">VMware</span>
+						<small class="{{ $linkDescription }}">
+							Discover how MinIO integrates with VMware across the portfolio from the Persistent Data platform to TKG and how we support their
+							Kubernetes ambitions.
+						</small>
+					</a>
+					<a href="/solutions/veeam" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Veeam</span>
+						<small class="{{ $linkDescription }}"
+							>Learn how MinIO and Veeam have partnered to drive performance and scalability for a variety of backup use cases.</small
+						>
+					</a>
+					<a href="/solutions/commvault" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Commvault</span>
+						<small class="{{ $linkDescription }}">
+							Learn how Commvault and MinIO are partnered to deliver performance at scale for mission critical backup and restore workloads.
+						</small>
+					</a>
+					<a href="/product/integrations" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Integrations</span>
+						<small class="{{ $linkDescription }}">Browse our vast portfolio of integrations.</small>
+					</a>
+				</div>
+			</div>
+
+			{{/* Community */}}
+			<div class="group">
+				<span class="{{ $linkItem }}">
+					Community
+					{{ template "nav-item-helpers" . }}
+				</span>
+
+				<div class="{{ $dropdownMenu }}">
+					<a target="_blank" rel="noreferrer noopener" href="https://github.com/minio/" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">GitHub</span>
+						<small class="{{ $linkDescription }}">Join our GitHub open source community: explore, experiment, ask questions, and contribute.</small>
+					</a>
+
+					<a target="_blank" rel="noreferrer noopener" href="https://slack.min.io" class="{{ $link }}">
+						<span class="{{ $linkTitle }}">Slack Channel</span>
+						<small class="{{ $linkDescription }}">
+							The MinIO Community Slack provides an open forum for discussing topics related to MinIO. All support is provided on a best-effort
+							basis.
+						</small>
+					</a>
+				</div>
+			</div>
+
+			<a href="https://min.io/docs/minio/kubernetes/upstream/" class="{{ $linkItemAlt }}">
+				<span>Docs</span>
+				{{ template "line" . }}
+			</a>
+
+			<a href="https://blog.min.io/" class="{{ $linkItemAlt }}">
+				<span>Blog</span>
+				{{ template "line" . }}
+			</a>
+
+			<a href="https://resources.min.io/l/library" class="{{ $linkItemAlt }}">
+				<span>Resources</span>
+				{{ template "line" . }}
+			</a>
+			<a href="/training" class="{{ $linkItemAlt }}">
+				<span>Training</span>
+				{{ template "line" . }}
+			</a>
+
+			<a href="/partner" class="{{ $linkItemAlt }}">
+				<span>Partner</span>
+				{{ template "line" . }}
+			</a>
+
+			<a href="/pricing" class="{{ $linkItemAlt }}">
+				<span>Pricing</span>
+				{{ template "line" . }}
+			</a>
+
+			<a
+				class="ml-auto block rounded border border-theme-red px-4 py-1 text-center text-white transition-colors duration-300 hover:bg-theme-red hover:text-white rm:mx-3 rm:my-4 rm:text-heading rm:hover:text-white dark:border-slate-500 dark:text-body dark:hover:bg-dark-200"
+				href="https://min.io/download"
+			>
+				<span class="rm:font-medium">Download</span>
+			</a>
 		</nav>
 
 		<h2 class="mb-3 text-center text-4xl font-bold text-white rm:hidden">Documentation</h2>
