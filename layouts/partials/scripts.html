@@ -8,7 +8,7 @@
 
 {{ $script := resources.Get "/dist/app.js" }}
 
-{{ if .Site.IsServer }}
+{{ if .hugo.IsServer }}
 	{{ $script := $script | fingerprint }}
 	<script src="{{ $script.Permalink }}"></script>
 {{ else }}

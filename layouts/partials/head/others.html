@@ -8,7 +8,7 @@
 {{ $utils := resources.Get "dist/utilities.css" }}
 {{ $css := slice $scss $utils | resources.Concat "dist/style.css" }}
 
-{{ if .Site.IsServer }}
+{{ if .hugo.IsServer }}
 	{{ $css := $css | fingerprint }}
 	<link rel="stylesheet" href="{{ $css.Permalink }}" />
 {{ else }}
