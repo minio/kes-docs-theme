@@ -6,23 +6,25 @@ module.exports = {
 	darkMode: "class",
 	theme: {
 		fontFamily: {
-			sans: ["Inter"],
-			mono: ["Courier New", "Courier", "monospace"],
+			sans: ["Geist", "sans-serif"],
+			heading: ["Satoshi", "sans-serif"],
+			mono: ["Geist Mono", "Courier", "monospace"],
 		},
 		fontSize: {
-			xxxs: 6 / 16 + "rem",
-			xxs: 9 / 16 + "rem",
-			xs: 11 / 16 + "rem",
-			sm: 13 / 16 + "rem",
-			md: 15 / 16 + "rem",
-			base: 17 / 16 + "rem",
-			lg: 19 / 16 + "rem",
-			xl: 21 / 16 + "rem",
+			xxxs: 8/16 + "rem",
+			xxs: 10/16 + "rem",
+			xs: 12/16 + "rem",
+			sm: 14/16 + "rem",
+			md: "1rem",
+			"base": 18/16 + "rem",
+			lg: 20/16 + "rem",
+			xl: 22/16 + "rem",
 			"2xl": "1.5rem",
 			"3xl": "1.875rem",
 			"4xl": "2.25rem",
 			"5xl": "3rem",
 			"6xl": "4rem",
+			"hero": ["clamp(40px, 6vw, 72px)", "1.2"],
 		},
 		extend: {
 			colors: {
@@ -43,14 +45,17 @@ module.exports = {
 					500: "#8A93A4",
 				},
 				theme: {
-					red: "#c72e49",
+					red: {
+						DEFAULT: "#CF163E",
+						hover: "#B51235",
+						strong: "#FF6C81",
+						minimal: "#FFE3E5",
+						neutral: "#FFA1AC",
+						bright: "#E91945",
+					},
+					"theme-neutral-subtle": "#D6DAE1",
+					"theme-border-subtle": "#566176"
 				},
-			},
-			borderRadius: {
-				DEFAULT: "0.1875rem",
-			},
-			fontSize: {
-				md: "0.9375rem",
 			},
 			textColor: {
 				body: "var(--text-color)",
@@ -58,7 +63,10 @@ module.exports = {
 				heading: "var(--headings-color)",
 			},
 			maxWidth: {
-				container: "1400px",
+				container: "1300px",
+			},
+			borderColor: {
+				DEFAULT: "#D6DAE1",
 			},
 			typography: {
 				DEFAULT: {

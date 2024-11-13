@@ -46,3 +46,32 @@ pre,
 		width: 0;
 	}
 }
+
+// Dropdown bleed
+.nav-dropdown {
+	isolation: isolate;
+	
+	@media screen and (min-width: 1280px) {
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			left: -100vmax;
+			right: -100vmax;
+			bottom: 0;
+			pointer-events: none;
+			z-index: -1;
+			background-color: #ffffff;
+			border-top: 1px solid #eee;
+			box-shadow: 24px 24px 48px 0px rgba(0, 0, 0, 0.08);
+		}
+	}
+}
+
+// Bg
+@media screen and (min-width: 1280px) {
+	body {
+		background: url(../img/bg.png) no-repeat top 5rem right;
+		background-size: 120px;
+	}
+}
