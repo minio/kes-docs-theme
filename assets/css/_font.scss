@@ -23,3 +23,59 @@ $font-base-path: "../fonts";
 	font-style: normal;
 	font-display: swap;
 }
+
+@font-face {
+	font-family: Geist;
+	src: url(#{$font-base-path}/geist/Geist-Bold.woff2) format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Geist;
+	src: url(#{$font-base-path}/geist/Geist-Regular.woff2) format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Geist;
+	src: url(#{$font-base-path}/geist/Geist-Medium.woff2) format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Geist Mono;
+	src: url(#{$font-base-path}/geist-mono/GeistMono-Regular.woff2) format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Satoshi;
+	src: url(#{$font-base-path}/satoshi/Satoshi-Bold.woff2) format("woff2");
+	font-weight: 700;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Satoshi;
+	src: url(#{$font-base-path}/satoshi/Satoshi-Regular.woff2) format("woff2");
+	font-weight: 400;
+	font-style: normal;
+	font-display: swap;
+}
+
+@font-face {
+	font-family: Satoshi;
+	src: url(#{$font-base-path}/satoshi/Satoshi-Medium.woff2) format("woff2");
+	font-weight: 500;
+	font-style: normal;
+	font-display: swap;
+}

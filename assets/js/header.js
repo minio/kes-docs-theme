@@ -39,11 +39,12 @@ export const header = () => {
 	// Dark mode
 	// -----------------------------------------------
 	const DM_ELEM = document.getElementById("toggle-dark-mode");
-	let isDarkModeActive = JSON.parse(localStorage.getItem("dark-mode")) || false;
+	//let isDarkModeActive = JSON.parse(localStorage.getItem("dark-mode")) || false;
+	let isDarkModeActive = false;
 
 	const renderDarkModeBtn = () => {
 		const DM_ICON = isDarkModeActive ? iconSprite("sun", 17, 17) : iconSprite("moon", 21, 21);
-		localStorage.setItem("dark-mode", isDarkModeActive);
+		//localStorage.setItem("dark-mode", isDarkModeActive);
 		ROOT.classList.toggle("dark", isDarkModeActive);
 		DM_ELEM.innerHTML = DM_ICON;
 	};
@@ -61,10 +62,11 @@ export const header = () => {
 	// Read mode
 	// -----------------------------------------------
 	const RM_ELEM = document.getElementById("toggle-read-mode");
-	let isReadModeActive = JSON.parse(localStorage.getItem("read-mode")) || false;
+	//let isReadModeActive = JSON.parse(localStorage.getItem("read-mode")) || false;
+	let isReadModeActive = false;
 
 	const renderReadModeBtn = () => {
-		localStorage.setItem("read-mode", isReadModeActive);
+		//localStorage.setItem("read-mode", isReadModeActive);
 		ROOT.classList.toggle("read-mode", isReadModeActive);
 		rmIcon = isReadModeActive ? iconSprite("book-active", 17, 15) : iconSprite("book", 17, 15);
 		RM_ELEM.innerHTML = rmIcon;

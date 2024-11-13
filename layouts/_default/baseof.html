@@ -18,13 +18,12 @@
 	</head>
 
 	<body
-		class="flex flex-col bg-white font-sans leading-relaxed text-body antialiased selection:bg-blue-500/20 dark:bg-dark-0 rm:lg:h-screen rm:lg:overflow-hidden"
+		class="flex flex-col bg-white font-sans leading-relaxed text-body overflow-x-hidden antialiased selection:bg-blue-500/20 dark:bg-dark-0 rm:lg:h-screen rm:lg:overflow-hidden"
 		itemscope
 		itemtype="https://schema.org/WebPage"
 	>
 		{{ partial "site-header" . }}
-		{{ partial "platform-menu" . }}
-		<main class="relative mx-auto w-full flex-1 scroll-pt-4 items-start scroll-smooth nrm:max-w-container lg:flex rm:lg:overflow-auto">
+		<main class="relative mx-auto w-full flex-1 scroll-pt-4 items-start scroll-smooth nrm:max-w-container lg:flex rm:lg:overflow-auto p-5">
 			{{ partial "menu" . }}
 			{{ partial "toc" . }}
 			<div class="min-w-0 flex-1 p-5 lg:p-7">
