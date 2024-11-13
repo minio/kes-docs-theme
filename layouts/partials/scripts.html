@@ -8,14 +8,18 @@
 
 {{ $script := resources.Get "/dist/app.js" }}
 
+<!-- 
 {{ if hugo.IsServer }}
 	{{ $script := $script | fingerprint }}
 	<script src="{{ $script.Permalink }}"></script>
 {{ else }}
-	{{ $script := $script | minify | fingerprint }}
-	<script data-rel-url="{{ .Permalink }}"></script>
-	<script src="{{ $script.Permalink }}"></script>
+	
 {{ end }}
+-->
+
+{{ $script := $script | minify | fingerprint }}
+<script data-rel-url="{{ .Permalink }}"></script>
+<script src="{{ $script.Permalink }}"></script>
 
 {{- $searchConfigFile := printf "search/%s.config.json" .Language.Lang -}}
 {{- $searchConfig := resources.Get "search/config.json" | resources.ExecuteAsTemplate
