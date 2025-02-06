@@ -1,3 +1,8 @@
+// Disable font ligatures
+body {
+	font-variant-ligatures: none;
+}
+
 // Custom Scrollbar
 pre,
 .scrollbar {
