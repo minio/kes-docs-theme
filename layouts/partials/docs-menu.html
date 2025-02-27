@@ -1,16 +1,20 @@
-<div class="text-center hide-scrollbar overflow-x-auto mb-20">
-	<nav class=" bg-white/75  inline-flex items-center rounded-lg font-heading border p-0.5 border-theme-neutral-subtle">
-		{{ range .Site.Menus.docs }}
-			<a
-				href="{{ .URL }}"
-				target="_blank"
-				rel="noreferrer"
-				class="flex whitespace-nowrap items-center justify-center px-7 flex-1 gap-2.5 rounded-md shrink-0 h-14 border border-transparent font-bold transition-all duration-300 [&.active]:text-theme-red [&.active]:border-theme-red hover:text-theme-red [&.active]:pointer-events-none {{ if .Params.Current }}
-					active
-				{{ end }}"
-			>
-				{{ .Name }}
-			</a>
-		{{ end }}
-	</nav>
-</div>
+{{ if .Site.Menus.docs }}
+
+	<div class="text-center hide-scrollbar overflow-x-auto mb-20">
+		<nav class=" bg-white/75  inline-flex items-center rounded-lg font-heading border p-0.5 border-theme-neutral-subtle">
+			{{ range .Site.Menus.docs }}
+				<a
+					href="{{ .URL }}"
+					target="_blank"
+					rel="noreferrer"
+					class="flex whitespace-nowrap items-center justify-center px-7 flex-1 gap-2.5 rounded-md shrink-0 h-14 border border-transparent font-bold transition-all duration-300 [&.active]:text-theme-red [&.active]:border-theme-red hover:text-theme-red [&.active]:pointer-events-none {{ if .Params.Current }}
+						active
+					{{ end }}"
+				>
+					{{ .Name }}
+				</a>
+			{{ end }}
+		</nav>
+	</div>
+
+{{ end }}
