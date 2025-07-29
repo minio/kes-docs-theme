@@ -24,7 +24,7 @@ module.exports = {
 			"4xl": "2.25rem",
 			"5xl": "3rem",
 			"6xl": "4rem",
-			"hero": ["clamp(40px, 6vw, 72px)", "1.2"],
+			"hero": ["clamp(40px, 6vw, 60px)", "1.2"],
 		},
 		extend: {
 			colors: {
